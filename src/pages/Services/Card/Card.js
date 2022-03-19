@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 const Card = ({service}) => {
-    const {service: name, description, fullDescription, price, picture, id} = service;
+    const {service: name, description, fullDescription, price, picture, _id: id} = service;
     const trimedDescription = fullDescription.split(' ').slice(0,50).join(' ');
     return (
         <div className='d-flex mt-5' style={{columnGap: '30px'}}>

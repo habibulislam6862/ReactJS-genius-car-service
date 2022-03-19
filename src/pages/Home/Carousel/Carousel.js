@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import apiDomain from '../../../config/api.config';
 import styles from './Carousel.module.css';
 
 const Carousel = () => {
@@ -7,7 +8,7 @@ const Carousel = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const {data: services} = await axios.get("./fakedata.json");
+                const {data: services} = await axios.get(`${apiDomain}/services`);
                 const carouselData = services.filter(service => service.price < 65)
                 setCarousel(carouselData);
             } catch (error) {
@@ -17,16 +18,18 @@ const Carousel = () => {
         fetchData();
     }, []);
     return (
-        <div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="carousel">
+        <div id="carouseIndicators" className="carousel slide" data-bs-ride="carousel">
             <div className="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                {carousel.map( (value, index) => (
+                    <button key={value._id} type="button" data-bs-target="#carouseIndicators"  
+                    data-bs-slide-to={index} className={!index ? 'active' : undefined} 
+                    aria-current={!index ? 'true' : 'false'} aria-label={`Slide ${index}`}></button>
+                ) )}
             </div>
             <div className="carousel-inner">
                 {carousel.map( singleCarousel => {
                     return (
-                        <div key={singleCarousel.id} className={`carousel-item position-relative  ${carousel.indexOf(singleCarousel) === 0 ? 'active' : ''}`}>
+                        <div key={singleCarousel._id} className={`carousel-item position-relative  ${carousel.indexOf(singleCarousel) === 0 ? 'active' : ''}`}>
                             <img src={singleCarousel.picture} className={`d-block w-100 ${styles.carouselImage}`} alt={singleCarousel.service}/>
                             <div className={styles.blackShadow}></div>
                             <div className={`position-absolute ${styles.carouselText}`}>
@@ -37,11 +40,11 @@ const Carousel = () => {
                 })}
                 
             </div>
-            <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <button className="carousel-control-prev" type="button" data-bs-target="#carouseIndicators" data-bs-slide="prev">
                 <span className="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span className="visually-hidden">Previous</span>
             </button>
-            <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <button className="carousel-control-next" type="button" data-bs-target="#carouseIndicators" data-bs-slide="next">
                 <span className="carousel-control-next-icon" aria-hidden="true"></span>
                 <span className="visually-hidden">Next</span>
             </button>

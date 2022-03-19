@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import apiDomain from '../../../config/api.config';
 import Card from '../Card/Card';
 
 const Services = () => {
@@ -8,7 +9,7 @@ const Services = () => {
     useEffect(() => {
         const fetchData = async() => {
             try {
-                const {data} = await axios.get('./fakedata.json');
+                const {data} = await axios.get(`${apiDomain}/services`);
                 const topSeven = data.slice(0,7);
                 setServices(topSeven);
             } catch (error) {
@@ -21,7 +22,7 @@ const Services = () => {
         <>
         <h1>Our services</h1>
             <div className="row gy-5 mb-5">
-                {services.map(service => <Card key={service.id} service={service}/>)}
+                {services.map(service => <Card key={service._id} service={service}/>)}
                 <div className='col-md-3'>
                     <div className='p-3 d-flex flex-column rounded  bg-dark h-100'>
                         <div className='m-auto'>

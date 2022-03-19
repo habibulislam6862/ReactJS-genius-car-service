@@ -4,6 +4,8 @@ import AuthProvider from './context/AuthProvider';
 import AboutUs from './pages/AboutUs/AboutUs';
 import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
+import AddService from './pages/Services/AddService/AddService';
+import EditService from './pages/Services/EditService/EditService';
 import Services from './pages/Services/Services';
 import Header from './pages/Shared/Header/Header';
 import SingleService from './pages/SingleService/SingleService';
@@ -24,6 +26,8 @@ function App() {
               <Route path="/about-us" element={<AboutUs />} />
               <Route path="/*" element={<GuestPrivateRoute/>}>
                 <Route path="blog/:id" element={<SingleService />} />
+                <Route path="blog/edit/:id" element={<EditService />} />
+                <Route path="add-service" element={<AddService />} />
               </Route>
               <Route path="/services/*" element={<Services />} />
             </Routes>
