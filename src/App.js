@@ -1,24 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, createContext } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import AuthProvider from './context/AuthProvider';
+import AboutUs from './pages/AboutUs/AboutUs';
+import Home from './pages/Home/Home';
+import Login from './pages/Login/Login';
+import Services from './pages/Services/Services';
+import Header from './pages/Shared/Header/Header';
+import SingleService from './pages/SingleService/SingleService';
+import GuestPrivateRoute from './private-routes/GuestPrivateRoute/GuestPrivateRoute';
 
+
+export const RenderContext = createContext();
 function App() {
+  const [render, setRender] = useState({});
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthProvider>
+       <RenderContext.Provider value={{render, setRender}}>
+          <div className='container'>
+            <Header />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/about-us" element={<AboutUs />} />
+              <Route path="/*" element={<GuestPrivateRoute/>}>
+                <Route path="blog/:id" element={<SingleService />} />
+              </Route>
+              <Route path="/services/*" element={<Services />} />
+            </Routes>
+          </div>
+       </RenderContext.Provider>
+    </AuthProvider>
   );
 }
 

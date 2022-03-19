@@ -1,0 +1,12 @@
+.userName {
+    font-size: 22px;
+    font-weight: 700;
+    column-gap: 10px;
+}
+
+@media only screen and (min-width: 992px) {
+    .userName {
+        position: absolute;
+        right: 0;
+    }
+}
