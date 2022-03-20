@@ -110,8 +110,7 @@ const useFirebase = () => {
     user,
     logout,
     phoneNumberSignIn,
-    verifyOPTphone: verifyOPTPhone,
+    verifyOPTPhone,
   };
 };
-
 export default useFirebase;

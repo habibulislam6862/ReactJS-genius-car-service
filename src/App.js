@@ -9,7 +9,6 @@ import EditService from "./pages/Services/EditService/EditService";
 import Services from "./pages/Services/Services";
 import SingleService from "./pages/SingleService/SingleService";
 import GuestPrivateRoute from "./private-routes/GuestPrivateRoute/GuestPrivateRoute";
-import Header from "./pages/Shared/Header/Header";
 
 export const RenderContext = createContext(undefined);
 function App() {
@@ -18,7 +17,6 @@ function App() {
     <AuthProvider>
       <RenderContext.Provider value={{ render, setRender }}>
         <div className="container">
-          <Header />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />

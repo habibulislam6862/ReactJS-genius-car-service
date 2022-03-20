@@ -8,8 +8,10 @@ const Carousel = () => {
   useEffect(() => {
     axios
       .get(`${apiDomain}/services`)
-      .then(({ data: services }) => {
-        const carouselData = services.filter((service) => service.price < 65);
+      .then(({ data }) => {
+        const carouselData = data.services.filter(
+          (service) => service.price < 65
+        );
         setCarousel(carouselData);
       })
       .catch((error) => {

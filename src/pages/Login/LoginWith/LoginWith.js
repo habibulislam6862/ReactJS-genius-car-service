@@ -17,7 +17,7 @@ const LoginWith = ({ redirect }) => {
         <img
           onClick={googleSignInHandler}
           src={google}
-          alt="Signin with google"
+          alt="SignIn with google"
           style={{ height: "65px", maxWidth: "290px", cursor: "pointer" }}
         />
       </div>
