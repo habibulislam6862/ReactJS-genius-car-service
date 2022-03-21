@@ -21,7 +21,7 @@ const Services = () => {
                 const {data} =  await axios.get(`${apiDomain}/services?page=${page}&limit=${limit}`);
                 setLoading(false)
                 setTotal(data.count);
-                setServices(data.services.reverse());
+                setServices(data.services);
             } catch (error) {
                 window.alert(error.message)
             }
