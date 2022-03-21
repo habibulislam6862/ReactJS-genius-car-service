@@ -1,0 +1,8 @@
+.featureImage {
+    width: 300px
+}
+@media only screen and (max-width: 768px) {
+    .featureImage {
+        width: 100%
+    }
+}
