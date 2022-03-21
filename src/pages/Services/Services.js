@@ -29,11 +29,18 @@ const Services = () => {
     const handleAddNew = () => {
         navigate('/add-service')
     }
+
+    const paginationHandler = (element) => {
+        window.scrollTo(0,0);
+        setLoading(true);
+        setPage(element);
+    }
+
      return loading ? <Spinner/> : (
         <div>
             <button onClick={handleAddNew} className="btn btn-outline-dark mt-4">Add service</button>
             {services.map(service => <Card key={service._id} service={service}/>)}
-            {[...Array(Math.ceil(total / limit)).keys()].map(el => <button onClick={() => setPage(el)} key={el} className={`btn btn-outline-dark ms-2 mb-5 ${el === page ? 'btn-dark text-light' : ''}`}>{el+1}</button>)}
+            {[...Array(Math.ceil(total / limit)).keys()].map(el => <button onClick={() => paginationHandler(el)} key={el} className={`btn btn-outline-dark ms-2 mb-5 ${el === page ? 'btn-dark text-light' : ''}`}>{el+1}</button>)}
         </div>
     );
 };
