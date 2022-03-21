@@ -14,7 +14,8 @@ const EditService = () => {
             setService(data)
         }
         getService();
-    }, [id]);
+        document.titlte= 'Edit '+service.service +' - Genius Car Service '
+    }, [id, service]);
     console.log(service);
     const {_id, service: name, price, picture, description, fullDescription} = service;
     return (

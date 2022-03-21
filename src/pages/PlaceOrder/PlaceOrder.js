@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
@@ -10,6 +10,9 @@ const PlaceOrder = () => {
   const { register, handleSubmit } = useForm();
   const location = useLocation();
   const navigate = useNavigate();
+  useEffect(() => {
+    document.title = 'Place order - Genius Car service';
+  }, []);
   const onSubmit = async (data) => {
     const { name, email } = data;
     const { data: response } = await axios.post(`${apiDomain}/place-order`, {

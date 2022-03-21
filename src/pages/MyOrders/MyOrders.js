@@ -9,7 +9,10 @@ const MyOrders = () => {
   useEffect(() => {
     axios
       .get(`${apiDomain}/user-orders?email=${user.email}`)
-      .then(({ data }) => setUserOrder(data))
+      .then(({ data }) => {
+        setUserOrder(data);
+        document.title = user.displayName + "'s Orders - Genius Car service"
+      })
       .catch((error) => console.log(error.message));
   }, [user]);
 

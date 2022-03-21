@@ -13,6 +13,7 @@ const SingleService = () => {
   const { user } = useAuth();
 
   useEffect(() => {
+    
     const getBlog = async () => {
       try {
         const { data: currentBlog } = await axios.get(
@@ -26,7 +27,8 @@ const SingleService = () => {
       }
     };
     getBlog();
-  }, [id]);
+    document.title = blog.service + ' - Genius Car service';
+  }, [id, blog]);
   const location = useLocation();
   const handleDelete = async () => {
     try {

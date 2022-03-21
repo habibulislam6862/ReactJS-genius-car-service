@@ -13,6 +13,9 @@ const Services = () => {
     const [page, setPage] = useState(0);
     const navigate = useNavigate();
     useEffect(() => {
+        document.title = 'All Services - Genius Car Service';
+    }, []);
+    useEffect(() => {
         const fetchService = async() => {
             try {
                 const {data} =  await axios.get(`${apiDomain}/services?page=${page}&limit=${limit}`);
