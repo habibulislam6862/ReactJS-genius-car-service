@@ -3,6 +3,9 @@
     font-weight: 700;
     column-gap: 10px;
 }
+.navActive {
+    color: red!important;
+}
 
 @media only screen and (min-width: 992px) {
     .userName {
